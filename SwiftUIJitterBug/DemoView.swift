@@ -14,8 +14,8 @@ struct DemoView : View {
         let size = self.appState.iconSize
 
         return VStack(spacing: 0) {
-            ForEach(appState.items, id: \.self) { item in
-                Image(systemName: item)
+            ForEach(appState.items) { item in
+                Image(systemName: item.image)
                     .resizable()
                     .padding(15)
                     .frame(

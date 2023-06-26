@@ -73,9 +73,14 @@ enum WindowPositionCalculation : Int {
     case centered = 2
 }
 
+struct Item : Identifiable {
+    let id : UUID = UUID()
+    let image : String
+}
+
 class AppState : ObservableObject {
     @Published var iconSize : CGFloat = 100
-    @Published var items : [String] = []
+    @Published var items : [Item] = []
 
     var windowPositionCalculation : WindowPositionCalculation = .anchored
 
@@ -88,8 +93,8 @@ class AppState : ObservableObject {
         let numBugs = Int(screen.visibleFrame.height / 350)
 
         for _ in 1...numBugs {
-            items.append("ladybug.fill")
-            items.append("ladybug")
+            items.append(Item(image: "ladybug.fill"))
+            items.append(Item(image: "ladybug"))
         }
     }
 }
