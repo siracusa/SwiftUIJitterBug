@@ -25,8 +25,5 @@ struct DemoView : View {
                     .background(.green)
             }
         }
-        .padding(.top, size/5)
-        .padding(.bottom, size/5)
-        .background(.blue)
     }
 }

@@ -683,11 +683,10 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                <windowController id="B8D-0N-5wS" customClass="WindowController" customModule="SwiftUIJitterBug" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Jitter Bug" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" animationBehavior="default" id="IQv-IB-iLA">
+                        <windowStyleMask key="styleMask" titled="YES"/>
+                        <rect key="contentRect" x="608" y="0.0" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
@@ -706,11 +705,14 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="SwiftUIJitterBug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="383"/>
+                        <rect key="frame" x="0.0" y="0.0" width="690" height="448"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RoA-ve-FM5">
-                                <rect key="frame" x="18" y="337" width="444" height="28"/>
+                                <rect key="frame" x="18" y="402" width="404" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="400" id="JUK-6M-hzi"/>
+                                </constraints>
                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="50" maxValue="400" doubleValue="100" tickMarkPosition="above" sliderType="linear" id="wNQ-L2-F8C">
                                     <font key="font" size="12" name="Helvetica"/>
                                 </sliderCell>
@@ -719,18 +721,18 @@
                                 </connections>
                             </slider>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="HVd-1P-d0r">
-                                <rect key="frame" x="18" y="20" width="444" height="224"/>
+                                <rect key="frame" x="18" y="21" width="404" height="288"/>
                                 <textFieldCell key="cell" selectable="YES" id="Qpg-G7-r1w">
                                     <font key="font" metaFont="system"/>
-                                    <mutableString key="title">Select the “Anchored” position calculation algorithm from the pop-up menu, then move the slider all the way to the end and back again many times at various speeds. While doing this, look at the blue strip at the top of the window with all the ladybugs in it. Watch how, every once in a while, it will jump away from the top of the window. You may also see the green area with the ladybugs in it jump upwards, pushing the blue strip up and out of the window frame entirely for a brief moment.
+                                    <mutableString key="title">Select the “Anchored” position calculation algorithm from the pop-up menu, then move the slider all the way to the end and back again many times at various speeds. While doing this, watch the window with all the ladybugs in it. Notice how, every once in a while, the window content will move or shrink such that the red background of the window itself becomes visible briefly. This background should never be visible, but the content jumps around enough that you will see flashes of red. The two images to the right show the buggy behavior (with the ❌ next to it) and the expected behavior (with the ✅ next to it).
 
-The jitter happens when one or both blue-striped ends of the window are near the top or bottom of the screen. Select the “Centered“ position calculation algorithm and then move the slider around while keeping the ends away from the top and bottom of the screen. Notice how the jitter seen earlier does not occur unless the ends of the window get very close to the top/bottom of the screen.</mutableString>
+This content jitter seems to happen most when one or both of ends of the window are near the top or bottom of the screen. Select the “Centered“ position calculation algorithm and then move the slider around while keeping the ends away from the top and bottom of the screen. Notice how the jitter seen earlier does not occur unless the ends of the window get close to (or extend past) the top/bottom of the screen.</mutableString>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="S6F-Ax-z9i">
-                                <rect key="frame" x="267" y="282" width="98" height="25"/>
+                                <rect key="frame" x="247" y="347" width="98" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="91" id="hkU-fo-Fsb"/>
                                 </constraints>
@@ -749,9 +751,42 @@ The jitter happens when one or both blue-striped ends of the window are near the
                                 </connections>
                             </popUpButton>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NSD-Ip-7cT">
-                                <rect key="frame" x="118" y="289" width="146" height="16"/>
+                                <rect key="frame" x="98" y="354" width="146" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Positioning Calculation:" id="K2a-Im-io9">
                                     <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eWO-W2-waM">
+                                <rect key="frame" x="470" y="228" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="PAe-ff-E1L"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="i8f-pJ-rmQ"/>
+                                    <constraint firstAttribute="height" constant="200" id="m85-bS-cJh"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="bug-bad" id="doD-N8-OlQ"/>
+                            </imageView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sK9-da-ZTz">
+                                <rect key="frame" x="470" y="20" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="OCK-Jv-vat"/>
+                                    <constraint firstAttribute="height" constant="200" id="kOB-tT-HrG"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="bug-good" id="v42-a4-pdN"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nO4-GD-n7g">
+                                <rect key="frame" x="426" y="313" width="38" height="30"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="center" title="❌" id="I63-ZM-6gV">
+                                    <font key="font" size="26" name=".AppleColorEmojiUI"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFf-lf-c41">
+                                <rect key="frame" x="426" y="105" width="38" height="30"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="center" title="✅" id="xbM-ng-vxR">
+                                    <font key="font" size="26" name=".AppleColorEmojiUI"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -759,15 +794,25 @@ The jitter happens when one or both blue-striped ends of the window are near the
                         </subviews>
                         <constraints>
                             <constraint firstItem="RoA-ve-FM5" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="1T9-wy-Vkb"/>
-                            <constraint firstAttribute="bottom" secondItem="HVd-1P-d0r" secondAttribute="bottom" constant="20" symbolic="YES" id="43t-h9-AUU"/>
+                            <constraint firstItem="sK9-da-ZTz" firstAttribute="leading" secondItem="kFf-lf-c41" secondAttribute="trailing" constant="8" symbolic="YES" id="2wU-Vb-iuK"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="HVd-1P-d0r" secondAttribute="bottom" constant="20" symbolic="YES" id="43t-h9-AUU"/>
+                            <constraint firstAttribute="bottom" secondItem="sK9-da-ZTz" secondAttribute="bottom" constant="20" symbolic="YES" id="8uV-aS-PjH"/>
+                            <constraint firstItem="sK9-da-ZTz" firstAttribute="top" secondItem="eWO-W2-waM" secondAttribute="bottom" constant="8" symbolic="YES" id="Di6-Kd-ca5"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="S6F-Ax-z9i" secondAttribute="trailing" constant="20" symbolic="YES" id="Fv7-B0-J5O"/>
-                            <constraint firstItem="NSD-Ip-7cT" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="120" id="HMx-k8-Krx"/>
+                            <constraint firstItem="NSD-Ip-7cT" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="100" id="HMx-k8-Krx"/>
+                            <constraint firstAttribute="trailing" secondItem="eWO-W2-waM" secondAttribute="trailing" constant="20" symbolic="YES" id="HVK-tB-Xzt"/>
+                            <constraint firstItem="nO4-GD-n7g" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RoA-ve-FM5" secondAttribute="trailing" constant="8" symbolic="YES" id="Kwj-Yy-K0A"/>
                             <constraint firstItem="RoA-ve-FM5" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="Kzq-R1-CeJ"/>
                             <constraint firstItem="S6F-Ax-z9i" firstAttribute="baseline" secondItem="NSD-Ip-7cT" secondAttribute="baseline" id="PuJ-4A-plr"/>
-                            <constraint firstAttribute="trailing" secondItem="HVd-1P-d0r" secondAttribute="trailing" constant="20" symbolic="YES" id="bJJ-ff-OeC"/>
+                            <constraint firstItem="eWO-W2-waM" firstAttribute="leading" secondItem="nO4-GD-n7g" secondAttribute="trailing" constant="8" id="Pyx-6i-o3A"/>
+                            <constraint firstItem="kFf-lf-c41" firstAttribute="centerY" secondItem="sK9-da-ZTz" secondAttribute="centerY" id="Q6j-q7-KS0"/>
+                            <constraint firstItem="nO4-GD-n7g" firstAttribute="centerY" secondItem="eWO-W2-waM" secondAttribute="centerY" id="XoJ-GD-P2R"/>
+                            <constraint firstItem="kFf-lf-c41" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="HVd-1P-d0r" secondAttribute="trailing" constant="8" symbolic="YES" id="glY-7D-zLO"/>
+                            <constraint firstItem="eWO-W2-waM" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="jdT-fT-gst"/>
                             <constraint firstItem="S6F-Ax-z9i" firstAttribute="leading" secondItem="NSD-Ip-7cT" secondAttribute="trailing" constant="8" symbolic="YES" id="mAT-FL-lnQ"/>
+                            <constraint firstAttribute="trailing" secondItem="sK9-da-ZTz" secondAttribute="trailing" constant="20" symbolic="YES" id="nKW-91-0Ma"/>
                             <constraint firstItem="NSD-Ip-7cT" firstAttribute="firstBaseline" secondItem="S6F-Ax-z9i" secondAttribute="firstBaseline" id="oEy-S7-w56"/>
-                            <constraint firstItem="RoA-ve-FM5" firstAttribute="trailing" secondItem="HVd-1P-d0r" secondAttribute="trailing" id="oMl-qV-JHv"/>
+                            <constraint firstItem="HVd-1P-d0r" firstAttribute="trailing" secondItem="RoA-ve-FM5" secondAttribute="trailing" id="pR5-l5-dgj"/>
                             <constraint firstItem="NSD-Ip-7cT" firstAttribute="top" secondItem="RoA-ve-FM5" secondAttribute="bottom" constant="38" id="w4p-GV-k6b"/>
                             <constraint firstItem="HVd-1P-d0r" firstAttribute="top" secondItem="NSD-Ip-7cT" secondAttribute="bottom" constant="45" id="wYU-tl-ZMZ"/>
                             <constraint firstItem="HVd-1P-d0r" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="xSP-0M-POa"/>
@@ -780,7 +825,11 @@ The jitter happens when one or both blue-striped ends of the window are near the
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="759.5"/>
+            <point key="canvasLocation" x="75" y="759"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bug-bad" width="608" height="608"/>
+        <image name="bug-good" width="608" height="608"/>
+    </resources>
 </document>

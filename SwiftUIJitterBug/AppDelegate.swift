@@ -16,17 +16,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         self.view = DemoView(appState: self.appState)
-
+        
         self.window = NSWindow(
             contentRect: NSRect(),
             styleMask: [ .titled ],
             backing: .buffered,
             defer: false
         )
-
+        
+        self.window.backgroundColor = .red
         self.window.contentView = NSHostingView(rootView: self.view)
         self.window.delegate = self
-
+        
         self.setWindowPosition()
         self.window.orderFront(self)
     }
@@ -48,7 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         
         switch self.appState.windowPositionCalculation {
             case .anchored:
-                pos.x = visibleScreenFrame.origin.x + visibleScreenWidth - min(frame.size.width, visibleScreenWidth) - 15
+                pos.x = visibleScreenFrame.origin.x + visibleScreenWidth - min(frame.size.width, visibleScreenWidth)
                 pos.y = visibleScreenFrame.origin.y + visibleScreenHeight - frame.size.height
             case .centered:
                 pos.x = visibleScreenFrame.origin.x + visibleScreenWidth - min(frame.size.width, visibleScreenWidth)
@@ -63,7 +64,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     }
 
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
-        return true
+        return false
     }
 }
 
