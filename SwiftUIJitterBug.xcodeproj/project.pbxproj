@@ -12,6 +12,7 @@
 		52383D752A477AA300EE963C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52383D742A477AA300EE963C /* Assets.xcassets */; };
 		52383D782A477AA300EE963C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52383D762A477AA300EE963C /* Main.storyboard */; };
 		52383D802A477AF400EE963C /* DemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52383D7F2A477AF400EE963C /* DemoView.swift */; };
+		528C72E02A4B8CD100BD6FF1 /* HostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C72DF2A4B8CD100BD6FF1 /* HostingView.swift */; };
 		52C51D352A49C5F000E9BC54 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C51D342A49C5F000E9BC54 /* WindowController.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,7 @@
 		52383D772A477AA300EE963C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		52383D792A477AA300EE963C /* SwiftUIJitterBug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftUIJitterBug.entitlements; sourceTree = "<group>"; };
 		52383D7F2A477AF400EE963C /* DemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoView.swift; sourceTree = "<group>"; };
+		528C72DF2A4B8CD100BD6FF1 /* HostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingView.swift; sourceTree = "<group>"; };
 		52C51D342A49C5F000E9BC54 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -59,6 +61,7 @@
 				52383D702A477AA200EE963C /* AppDelegate.swift */,
 				52C51D342A49C5F000E9BC54 /* WindowController.swift */,
 				52383D722A477AA200EE963C /* ViewController.swift */,
+				528C72DF2A4B8CD100BD6FF1 /* HostingView.swift */,
 				52383D7F2A477AF400EE963C /* DemoView.swift */,
 				52383D742A477AA300EE963C /* Assets.xcassets */,
 				52383D762A477AA300EE963C /* Main.storyboard */,
@@ -140,6 +143,7 @@
 				52383D732A477AA200EE963C /* ViewController.swift in Sources */,
 				52C51D352A49C5F000E9BC54 /* WindowController.swift in Sources */,
 				52383D802A477AF400EE963C /* DemoView.swift in Sources */,
+				528C72E02A4B8CD100BD6FF1 /* HostingView.swift in Sources */,
 				52383D712A477AA200EE963C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

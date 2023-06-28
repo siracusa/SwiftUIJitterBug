@@ -15,6 +15,7 @@ struct DemoView : View {
 
         return VStack(spacing: 0) {
             ForEach(appState.items) { item in
+                let _ = self.appState.redrawDelayEnabled ? usleep(self.appState.redrawDelay) : 0
                 Image(systemName: item.image)
                     .resizable()
                     .padding(15)
@@ -25,5 +26,16 @@ struct DemoView : View {
                     .background(.green)
             }
         }
+        .background(
+            GeometryReader { geo in
+                Rectangle()
+                .onAppear {
+                    appState.viewSize = geo.size
+                }
+                .onChange(of: geo.size) { newSize in
+                    appState.viewSize = newSize
+                }
+            }
+        )
     }
 }

@@ -24,8 +24,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
             defer: false
         )
         
-        self.window.backgroundColor = .red
-        self.window.contentView = NSHostingView(rootView: self.view)
+        let hostingView = HostingView(rootView: self.view)
+        hostingView.wantsLayer = true
+        hostingView.layer?.backgroundColor = NSColor.red.cgColor
+
+        self.window.backgroundColor = .blue
+        self.window.contentView = hostingView
         self.window.delegate = self
         
         self.setWindowPosition()
@@ -82,6 +86,26 @@ class AppState : ObservableObject {
     @Published var iconSize : CGFloat = 100
     @Published var items : [Item] = []
 
+    @Published var redrawDelayEnabled = false
+    @Published var redrawDelay : useconds_t = 1000
+
+    var sizeDelta : CGSize = .zero
+    var maxSizeDelta : CGSize = .zero
+
+    weak var viewController : ViewController?
+
+    var viewSize : CGSize = .zero {
+        didSet {
+            let delta = String(format: "(%0.2f, %0.2f)", self.sizeDelta.width, self.sizeDelta.height)
+            self.viewController?.deltaField.stringValue = delta
+
+            if abs(self.sizeDelta.width * self.sizeDelta.height) > abs(self.maxSizeDelta.width * self.maxSizeDelta.height) {
+                self.maxSizeDelta = self.sizeDelta
+                self.viewController?.maxDeltaField.stringValue = delta
+            }
+        }
+    }
+    
     var windowPositionCalculation : WindowPositionCalculation = .anchored
 
     init() {
