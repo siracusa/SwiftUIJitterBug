@@ -11,7 +11,7 @@ struct DemoView : View {
     @ObservedObject var appState : AppState
 
     var body : some View {
-        let size = self.appState.iconSize
+        let size = self.appState.iconSize.rounded()
 
         return VStack(spacing: 0) {
             ForEach(appState.items) { item in
@@ -21,7 +21,8 @@ struct DemoView : View {
                     .padding(15)
                     .frame(
                         width: size,
-                        height: size
+                        height: size,
+                        alignment: .topLeading
                     )
                     .background(.green)
             }
