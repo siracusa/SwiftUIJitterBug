@@ -27,3 +27,23 @@ class HostingView : NSHostingView<DemoView> {
     }
 }
 
+class HostingViewController: NSHostingController<DemoView> {
+    
+    override func viewDidLayout() {
+        super.viewDidLayout()
+        
+        let viewSize = self.rootView.appState.viewSize
+
+        if viewSize.width != 0 && self.view.frame.size != viewSize {
+            self.rootView.appState.sizeDelta =
+                CGSize(
+                    width: self.view.frame.size.width - viewSize.width,
+                    height: self.view.frame.size.height - viewSize.height
+                )
+        }
+        else {
+            self.rootView.appState.sizeDelta = .zero
+        }
+    }
+}
+
