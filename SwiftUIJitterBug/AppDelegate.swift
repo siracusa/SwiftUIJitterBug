@@ -10,12 +10,12 @@ import SwiftUI
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
-    var view : DemoView!
+//    var view : DemoView!
     var window : NSWindow!
     var appState = AppState()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        self.view = DemoView(appState: self.appState)
+        let view = DemoView(appState: appState)
         
         self.window = NSWindow(
             contentRect: NSRect(),
@@ -24,12 +24,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
             defer: false
         )
         
-        let hostingView = HostingView(rootView: self.view)
-        hostingView.wantsLayer = true
-        hostingView.layer?.backgroundColor = NSColor.red.cgColor
-
+        let hostingController = HostingViewController(rootView: view)
+        hostingController.sizingOptions = .preferredContentSize
+        hostingController.view.wantsLayer = true
+        hostingController.view.layer?.backgroundColor = NSColor.red.cgColor
+        
         self.window.backgroundColor = .blue
-        self.window.contentView = hostingView
+        self.window.contentViewController = hostingController
         self.window.delegate = self
         
         self.setWindowPosition()
